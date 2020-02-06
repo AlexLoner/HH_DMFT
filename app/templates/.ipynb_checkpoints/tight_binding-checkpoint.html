@@ -1,0 +1,22 @@
+{% extends 'start_page.html' %}
+{% block content %}    
+    <style>
+        form {
+            paddle: 5px;
+            width: 35%;
+            margin: 10px auto;
+        }
+    </style>
+    <form >
+        <p paddle="10px"> Vectors: </p>
+            <input type="text" size=50>
+            <input type="text" size=50>
+            <input type="text" size=50>
+    </form>
+    <form >
+        <p paddle="10px"> Atoms in elementary cell:
+            <input text-align="center" type="text" size=20>
+        </p>
+    </form>
+
+{% endblock %}

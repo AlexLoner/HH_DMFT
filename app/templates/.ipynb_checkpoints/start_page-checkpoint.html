@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>"HH_DMFT"</head>
+    <style>
+        body {
+            background: #F5F5F5;
+        }
+        div.header {
+            width: 100%;
+            padding: 1px;
+            text-align: center;
+            background: #39ac39;
+            color: white;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px black;  
+        }
+        .head_image {
+            float: left;
+            padding: 8px;
+            height: 100px;
+        }
+        .header h1, p {
+            line-height: 65%;
+        }
+        
+    </style>
+<head>
+    <title>HH_DMFT</title>
+</head>
 <body>
-
+    <img class="head_image"; src="{{ url_for('static', filename='logo.png') }}" />
+    <div class="header">
+        <h1 class="h1p_headres"> HH DMFT </h1>
+        <p  class="h1p_headers">Application for computation Hubbard Holstein model using DMFT approach</p>
+    </div>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
