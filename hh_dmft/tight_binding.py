@@ -127,7 +127,43 @@ class Tight_binding():
         self.dos = -np.imag(self.gf_w(w, mu, etta, sigma)) / np.pi
         
     def HT(self, g, wn, mu = 0, sigma = 0):
+        
+        assert hasattr(self, 'dos'), 'You should create dos object first. Call DOS(...) method'
         if isinstance(sigma, int): sigma = np.zeros(g.shape[0], dtype=np.complex128)
         dw = (self.omega[-1] - self.omega[0]) / self.omega.shape[0]
         for i in range(g.shape[0]):
             g[i] = np.sum(self.dos * dw / (1j * wn[i] - self.omega - sigma[i] + mu))
+
+
+class Bethe_lattice():
+    
+    def __init__(self, band_width, w, mu):
+        self.t = band_width / 4
+        self.DOS(w, mu)
+        
+    def gf_iwn(self, wn, mu, sigma = 0):
+        '''Return Green function in matsubara frequencies'''
+        self.g_wn = np.zeros(len(wn), dtype = np.complex128)
+        self.HT(self.g_wn, wn, mu, sigma)
+        return self.g_wn
+        
+    
+#     def gf_w(self, omega, mu, etta = 0, sigma = 0):
+#         '''Return Green function in real frequencies'''
+#         zeta = 1j * etta + omega + mu - sigma
+#         self.gw = (zeta - np.sign(np.imag(zeta)) * np.sqrt(zeta ** 2 - 4 * self.t ** 2, dtype=np.complex128)) / (2 * self.t ** 2)
+#         return self.gw
+    
+    def DOS(self, w, mu):
+        self.omega = w
+        self.dos = np.sqrt(4 * self.t ** 2 - w ** 2) / np.pi / 2 / self.t ** 2
+        self.dos[np.abs(w) > 2 * self.t] = 0
+        
+    def HT(self, g, wn, mu = 0, sigma = 0):
+        if isinstance(sigma, int): sigma = np.zeros(g.shape[0], dtype=np.complex128)
+        dw = (self.omega[-1] - self.omega[0]) / self.omega.shape[0]
+        for i in range(g.shape[0]):
+            g[i] = np.sum(self.dos * dw / (1j * wn[i] - self.omega - sigma[i] + mu))
+
+    
+    
