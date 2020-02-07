@@ -7,16 +7,15 @@
             margin: 10px auto;
         }
     </style>
-    <form >
+      
+    <form action="{{ url_for('tb_form') }}" method="post">
         <p paddle="10px"> Vectors: </p>
-            <input type="text" size=50>
-            <input type="text" size=50>
-            <input type="text" size=50>
+            <input type="text" size=50 name="vec1">
+            <input type="text" size=50 name="vec2">
+            <input type="text" size=50 name="vec3">
+            <button> Send </button>
     </form>
-    <form >
-        <p paddle="10px"> Atoms in elementary cell:
-            <input text-align="center" type="text" size=20>
-        </p>
-    </form>
+    
 
+    
 {% endblock %}
