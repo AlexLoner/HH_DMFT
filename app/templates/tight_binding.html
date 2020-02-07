@@ -1,21 +1,24 @@
 {% extends 'start_page.html' %}
-{% block content %}    
+{% block content %}
     <style>
         form {
             paddle: 5px;
             width: 35%;
             margin: 10px auto;
         }
+        input.set_attr {
+            margin: 5px;
+        }
     </style>
-      
+    
     <form action="{{ url_for('tb_form') }}" method="post">
         <p paddle="10px"> Vectors: </p>
-            <input type="text" size=50 name="vec1">
-            <input type="text" size=50 name="vec2">
-            <input type="text" size=50 name="vec3">
+            <input class="set_attr" type="text" size=50 name="vec1">
+            <input class="set_attr" type="text" size=50 name="vec2">
+            <input class="set_attr" type="text" size=50 name="vec3">
             <button> Send </button>
     </form>
-    
 
-    
+
+
 {% endblock %}

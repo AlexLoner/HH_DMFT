@@ -1,0 +1,42 @@
+{% extends 'start_page.html' %}
+{% block content %}
+<style>
+  .column {
+  float: left;
+  width: 20%;
+}
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+  .col1 {
+    background-color: red;
+  }
+  .col2 {
+    background-color: green;
+  }
+  .col3 {
+    background-color: blue;
+  }
+  .col4 {
+    background-color: orange;
+  }
+  .col5 {
+    background-color: brown;
+  }
+</style>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col1 column">Column 1</div>
+    <div class="col2 column">Column 2</div>
+    <div class="col3 column">Column 3</div>
+    <div class="col4 column">Column 4</div>
+    <div class="col5 column">Column 5</div>
+  </div>
+</div>
+
+{% endblock %}

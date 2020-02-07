@@ -8,10 +8,10 @@
             width: 100%;
             padding: 1px;
             text-align: center;
-            background: #39ac39;
+            background-color: #39ac39;
             color: white;
             font-size: 20px;
-            text-shadow: 1px 1px 2px black;  
+            text-shadow: 1px 1px 2px black;
         }
         .head_image {
             float: left;
@@ -21,16 +21,42 @@
         .header h1, p {
             line-height: 65%;
         }
-        
+        .column {
+            left=0px;
+            padding: 20px;
+            width: 12.5%;
+            height:100%;
+            background-color:#d0fffe;
+        }
     </style>
 <head>
     <title>HH_DMFT</title>
 </head>
 <body>
-    <img class="head_image"; src="{{ url_for('static', filename='logo.png') }}" />
+    <div height="100px">
+        <img class="head_image"; src="{{ url_for('static', filename='logo.png') }}" />
+    </div>
     <div class="header">
         <h1 class="h1p_headres"> HH DMFT </h1>
         <p  class="h1p_headers">Application for computation Hubbard Holstein model using DMFT approach</p>
+    </div>
+    <div class="column">
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
+        <p> Here </p>
     </div>
     {% block content %}
     {% endblock %}
