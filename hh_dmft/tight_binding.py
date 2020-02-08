@@ -137,9 +137,9 @@ class Tight_binding():
 
 class Bethe_lattice():
     
-    def __init__(self, band_width, w, mu):
+    def __init__(self, band_width, w):
         self.t = band_width / 4
-        self.DOS(w, mu)
+        self.DOS(w)
         
     def gf_iwn(self, wn, mu, sigma = 0):
         '''Return Green function in matsubara frequencies'''
@@ -154,7 +154,7 @@ class Bethe_lattice():
 #         self.gw = (zeta - np.sign(np.imag(zeta)) * np.sqrt(zeta ** 2 - 4 * self.t ** 2, dtype=np.complex128)) / (2 * self.t ** 2)
 #         return self.gw
     
-    def DOS(self, w, mu):
+    def DOS(self, w):
         self.omega = w
         self.dos = np.sqrt(4 * self.t ** 2 - w ** 2) / np.pi / 2 / self.t ** 2
         self.dos[np.abs(w) > 2 * self.t] = 0
