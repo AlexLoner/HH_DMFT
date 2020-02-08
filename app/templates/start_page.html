@@ -12,51 +12,44 @@
             color: white;
             font-size: 20px;
             text-shadow: 1px 1px 2px black;
+            z-index: 1;
         }
-        .head_image {
-            float: left;
-            padding: 8px;
-            height: 100px;
+        .head_image{
+          position: absolute;
+          height: 115px;
+          left: 0;
+          padding-left: 20px;
+          padding-top: 2px;
+          z-index: 2;
         }
         .header h1, p {
-            line-height: 65%;
+            line-height: 75%;
+        }
+        .cellContainer {
+          width: 20%;
+          float: left;
         }
         .column {
-            left=0px;
             padding: 20px;
-            width: 12.5%;
-            height:100%;
             background-color:#d0fffe;
         }
+
     </style>
 <head>
     <title>HH_DMFT</title>
 </head>
 <body>
-    <div height="100px">
-        <img class="head_image"; src="{{ url_for('static', filename='logo.png') }}" />
-    </div>
     <div class="header">
+        <img class="head_image"; src="{{ url_for('static', filename='logo.png') }}" />
         <h1 class="h1p_headres"> HH DMFT </h1>
         <p  class="h1p_headers">Application for computation Hubbard Holstein model using DMFT approach</p>
     </div>
-    <div class="column">
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
-        <p> Here </p>
+    <div class="cellContainer">
+        <div class="column">
+          {%for i in range(0, 10)%}
+            <p> Here </p>
+          {%endfor%}
+        </div>
     </div>
     {% block content %}
     {% endblock %}

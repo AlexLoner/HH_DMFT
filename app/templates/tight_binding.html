@@ -2,23 +2,63 @@
 {% block content %}
     <style>
         form {
-            paddle: 5px;
-            width: 35%;
-            margin: 10px auto;
+            margin: 2px auto;
         }
         input.set_attr {
             margin: 5px;
+            width: 75%;
         }
-    </style>
-    
-    <form action="{{ url_for('tb_form') }}" method="post">
-        <p paddle="10px"> Vectors: </p>
-            <input class="set_attr" type="text" size=50 name="vec1">
-            <input class="set_attr" type="text" size=50 name="vec2">
-            <input class="set_attr" type="text" size=50 name="vec3">
-            <button> Send </button>
-    </form>
+        .cols {
+          text-align: center;
+          border: 1px solid black;
+          margin: 5px;
+        }
 
+    </style>
+    <div class="cellContainer">
+        <div class="cols">
+            <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
+                <p padding="10px"> Vectors: </p>
+                    <input class="set_attr" type="text" name="vec1">
+                    <input class="set_attr" type="text" name="vec2">
+                    <input class="set_attr" type="text" name="vec3">
+                    <button> Тыкни </button>
+            </form>
+        </div>
+    </div>
+    <div class="cellContainer">
+        <div class="cols">
+            <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
+                <p padding="10px"> Vectors: </p>
+                    <input class="set_attr" type="text" name="vec1">
+                    <input class="set_attr" type="text" name="vec2">
+                    <input class="set_attr" type="text" name="vec3">
+                    <button> Тыкни </button>
+            </form>
+        </div>
+    </div>
+    <div class="cellContainer">
+        <div class="cols">
+            <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
+                <p padding="10px"> Vectors: </p>
+                    <input class="set_attr" type="text" name="vec1">
+                    <input class="set_attr" type="text" name="vec2">
+                    <input class="set_attr" type="text" name="vec3">
+                    <button> Тыкни </button>
+            </form>
+        </div>
+    </div>
+    <div class="cellContainer">
+        <div class="cols">
+            <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
+                <p padding="10px"> Vectors: </p>
+                    <input class="set_attr" type="text" name="vec1">
+                    <input class="set_attr" type="text" name="vec2">
+                    <input class="set_attr" type="text" name="vec3">
+                    <button> Тыкни </button>
+            </form>
+        </div>
+    </div>
 
 
 {% endblock %}
