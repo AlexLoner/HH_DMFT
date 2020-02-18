@@ -1,0 +1,36 @@
+{% extends 'start_page.html' %}
+{% block content %}
+<style>
+    form {
+        margin: 2px auto;
+    }
+    input.set_attr {
+        margin: 5px;
+        width: 75%;
+    }
+    .cols {
+      text-align: center;
+      border: 1px solid black;
+      margin: 5px;
+    }
+</style>
+<form action="{{ url_for(form_num) }}" method="post" margin-left="200px">
+<div class="cellContainer">
+    <div class="cols">
+
+            <p padding="10px"> Vectors: </p>
+            {% if vec|length > 0  %}
+                {% for i in vec %}
+                    {% set input_name = "vec" ~ i %}
+                    <input class="set_attr" type="text" name="{{input_name}}" value="{{ i }}">
+                {% endfor %}
+            {% else %}
+                <input class="set_attr" type="text" name="vec1">
+                <input class="set_attr" type="text" name="vec2">
+                <input class="set_attr" type="text" name="vec3">
+            {% endif %}
+    </div>
+</div>
+<button type='submit'> Не нажимай </button>
+</form>
+{% endblock %}

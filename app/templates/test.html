@@ -14,22 +14,13 @@
       margin: 5px;
     }
 </style>
-<form action="{{ url_for('test') }}" method="post" margin-left="200px">
-<div class="cellContainer">
-    <div class="cols">
-
-            <p padding="10px"> Vectors: </p>
-            {% if vec|length > 0  %}
-                {% for i in vec %}
-                    <input class="set_attr" type="text" name={% "vec" ~i %} value="{{ i }}">
-                {% endfor %}
-            {% else %}
-                <input class="set_attr" type="text" name="vec1">
-                <input class="set_attr" type="text" name="vec2">
-                <input class="set_attr" type="text" name="vec3">
-            {% endif %}
+<form action="/a" method="post" margin-left="200px">
+    <div class="cellContainer">
+        <div class="cols">
+            {% for f in form %}
+                {{ f(size=20) }}
+            {% endfor %}
+        </div>
     </div>
-</div>
-<button type='submit'> Не нажимай </button>
 </form>
 {% endblock %}

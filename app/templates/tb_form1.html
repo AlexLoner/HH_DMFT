@@ -1,0 +1,14 @@
+{% extends 'tb_form.html' %}
+{% block atoms %}
+<div class="cellContainer">
+    <div class="cols">
+        <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
+            <p padding="10px"> Atoms in elementary cell: </p>
+                <input class="set_attr" type="text" name="num_at">
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block atoms_coordinates %}
+
+{% endblock %}
