@@ -1,0 +1,15 @@
+{% extends 'start_page.html' %}
+{% block content %}
+<form method="post">
+    {% for i in range(n) %}
+    <p>
+        <input type="text" name="{{i}}">
+    </p>
+    {% endfor %}
+    <button type="submit"> Submit </button>
+</form>
+<form method = "post">
+    <input type="text" name="add_line" value="0" size=5>
+    <button type="submit"> Add line(s) </button>
+</form>
+{% endblock %}

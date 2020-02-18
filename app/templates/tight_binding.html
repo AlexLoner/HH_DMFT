@@ -22,40 +22,46 @@
                     <input class="set_attr" type="text" name="vec1">
                     <input class="set_attr" type="text" name="vec2">
                     <input class="set_attr" type="text" name="vec3">
-                    <button> Тыкни </button>
+                <p> <button> Тыкни </button></p>
             </form>
         </div>
     </div>
     <div class="cellContainer">
         <div class="cols">
             <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
-                <p padding="10px"> Vectors: </p>
-                    <input class="set_attr" type="text" name="vec1">
-                    <input class="set_attr" type="text" name="vec2">
-                    <input class="set_attr" type="text" name="vec3">
-                    <button> Тыкни </button>
+                <p padding="10px"> Atoms in elementary cell: </p>
+                    <input class="set_attr" type="text" name="num_at">
+                <p> <button> Тыкни </button></p>
             </form>
         </div>
     </div>
     <div class="cellContainer">
         <div class="cols">
             <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
-                <p padding="10px"> Vectors: </p>
-                    <input class="set_attr" type="text" name="vec1">
-                    <input class="set_attr" type="text" name="vec2">
-                    <input class="set_attr" type="text" name="vec3">
-                    <button> Тыкни </button>
+                <p padding="10px"> Coordinates atoms in elementary cell: </p>
+                    <input class="set_attr" type="text" name="cc1">
+                    <input class="set_attr" type="text" name="cc2">
+                    <input class="set_attr" type="text" name="cc3">
+                <p> <button> Тыкни </button></p>
             </form>
         </div>
     </div>
     <div class="cellContainer">
         <div class="cols">
             <form action="{{ url_for('tb_form') }}" method="post" margin-left="200px">
-                <p padding="10px"> Vectors: </p>
-                    <input class="set_attr" type="text" name="vec1">
-                    <input class="set_attr" type="text" name="vec2">
-                    <input class="set_attr" type="text" name="vec3">
-                    <button> Тыкни </button>
+                <p padding="10px"> Set Translation vector </p>
+                    <input class="set_attr" type="text" name="tr_vec1">
+                    <input class="set_attr" type="text" name="tr_vec2">
+                    <input class="set_attr" type="text" name="tr_vec3">
+                <p padding="10px"> Set number of cell (from __ to __) </p>
+                    <input class="set_attr" type="text" name="tr_num1">
+                    <input class="set_attr" type="text" name="tr_num2">
+                    <input class="set_attr" type="text" name="tr_num3">
+                <p padding="10px"> Hopping value </p>
+                    <input class="set_attr" type="text" name="tr_hop1">
+                    <input class="set_attr" type="text" name="tr_hop2">
+                    <input class="set_attr" type="text" name="tr_hop3">
+                <p> <button> Тыкни </button></p>
             </form>
         </div>
     </div>
