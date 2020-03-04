@@ -12,21 +12,26 @@
       text-align: center;
       border: 1px solid black;
       margin: 5px;
-      width: 10%;
     }
 </style>
-<form action="/a" method="post" margin-left="200px">
+
+<form method="post">
     <div class="cellContainer">
         <div class="cols">
-            {% for f in form_vec %}
-                {{ f(size=7) }}<br><br>
-            {% endfor %}
+            <p padding="10px"> Vectors: </p>
+            <input type="submit" name="button" value="1">
         </div>
-        <input type="submit" name="sub_vecs" value="Send">
     </div>
     <div class="cellContainer">
         <div class="cols">
-            {{ form_atom.atoms(size=10) }}<br><br>
+            <p padding="10px"> Atoms: </p>
+            <input type="submit" name="button" value="2">
+        </div>
+    </div>
+    <div class="cellContainer">
+        <div class="cols">
+            <p padding="10px"> Translations and hoppings: </p>
+            <input type="submit" name="button" value="3">
         </div>
     </div>
 </form>

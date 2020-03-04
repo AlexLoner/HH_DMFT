@@ -1,0 +1,10 @@
+{% extends 'start_page.html' %}
+{% block content %}
+<h1>FORM FOR ATOMS POSITIONS</h1>
+    <form method="post">
+        <input name="atoms" value="{{ atoms }}" size="25">
+        <input type="submit" value="Send" size="15">
+    </form>
+    {% block positions %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'start_page.html' %}
+{% block content %}
+<h1>FORM FOR VECTORS</h1>
+<form method="post">
+    {% for i in form_vec if i.name != "csrf_token"%}
+        <p>
+            <input name="{{ i.name }}" value="{{vec[loop.index - 1]}}" size=30>
+        </p>
+    {% endfor %}
+    <input type="submit" value="Send" size=10>
+</form>
+
+{% endblock %}
