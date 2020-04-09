@@ -1,4 +1,12 @@
-{% extends form_atoms.html %}
+{% extends 'form_atoms.html' %}
 {% block positions %}
-    <h2>positions for atoms</h2>
+    <h2>Positions for atoms</h2>
+    <form method="post">
+        {% for i in form_pos if i.name[:3] == "pos" %}
+            <input name="{{ i.name }}" size="20"> <bp>
+        {% endfor %}
+        <p>
+            <input type="submit" value="Send" size="15">
+        </p>
+    </form>
 {% endblock %}

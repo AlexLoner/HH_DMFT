@@ -2,8 +2,12 @@
 {% block content %}
 <h1>FORM FOR ATOMS POSITIONS</h1>
     <form method="post">
-        <input name="atoms" value="{{ atoms }}" size="25">
-        <input type="submit" value="Send" size="15">
+        {% if sub == 0 %}
+            <input name="atoms" value="1" size="25">
+            <input type="submit" value="Send" size="15">
+        {% else %}
+            <input name="atoms" value="{{ atoms }}" size="25">
+        {% endif %}
     </form>
     {% block positions %}
     {% endblock %}
