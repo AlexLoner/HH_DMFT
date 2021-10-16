@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import, unicode_literals
-
 import numpy as np
 import torch as th
-import numba
 import sys
 import psutil
-from . import anderson_model as h
-from . import ed_tools
+from utils import ed_tools
 
 from scipy.sparse import csr_matrix, coo_matrix
 from scipy.sparse.linalg import eigs
@@ -102,10 +97,10 @@ class THS(object):
             cut_C *= 1.25
             bE /= 1.25
         try:
-            self.GF = ed_tools.get_frequency_greens_function_component(ed_tools.operators_to_eigenbasis_gpu, 1j * wn, self.new_operator[0],  self.new_operator[1], beta, self.E, self.U, self.Z)
+            self.GF = ed_tools.get_frequency_greens_function_component(ed_tools.operators_to_eigenbasis_gpu, 1j * wn, self.new_operator[0], self.new_operator[1], beta, self.E, self.U, self.Z)
             perm = 'gpu'
         except:
-            self.GF = ed_tools.get_frequency_greens_function_component(ed_tools.operators_to_eigenbasis_cpu, 1j * wn, self.new_operator[0],  self.new_operator[1], beta, self.E, self.U, self.Z)
+            self.GF = ed_tools.get_frequency_greens_function_component(ed_tools.operators_to_eigenbasis_cpu, 1j * wn, self.new_operator[0], self.new_operator[1], beta, self.E, self.U, self.Z)
             perm = 'cpu'
         finally:
             th.cuda.empty_cache()

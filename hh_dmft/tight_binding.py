@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import, unicode_literals
-
 import numpy as np
 from itertools import product 
 
-class Tight_binding():
+
+class Tight_binding:
     
     def read_file(self, name):
         ''' Readind file with structure '''
@@ -81,26 +79,21 @@ class Tight_binding():
                 
         ####----------####
         If k_point was not calculate before, it compute with k_point grid (20, 20, 20)
-        
         '''
-        
-        try:
-            size = self.get_kpts().shape[0]
-        except :
+        if not hasattr(self, 'kpoints'):
             self.make_k_points((20, 20, 20))
-            size = self.get_kpts().shape[0]
-        
-        self.E = np.zeros((self.N, self.get_kpts().shape[0]), dtype=np.complex128)
-        for k in range(self.get_kpts().shape[0]):
-            self.E[:,k] = self.dop(self.k_points[k])
 
-            
+        size = self.k_points.shape[0]
+        self.E = np.zeros((self.N, size), dtype=np.complex128)
+        for k in range(size):
+            self.E[:,k] = self.dop(self.k_points[k])
         return self.E
     
-    def gf_iwn(self, wn, mu, sigma = 0):
+    def gf_iwn(self, wn, mu, sigma=None):
         '''Return Green function in matsubara frequencies'''
         self.g_wn = np.zeros(len(wn), dtype=np.complex128)
-        if isinstance(sigma, int): sigma = np.zeros(len(wn), dtype=np.complex128)
+        if sigma is None:
+            sigma = np.zeros(len(wn), dtype=np.complex128)
         for w in range(len(wn)):
             for i in range(self.N):
                 self.g_wn[w] += np.sum(1. / (1j*wn[w] - self.E[i] + mu - sigma[w])) 
@@ -109,11 +102,9 @@ class Tight_binding():
     
     def gf_w(self, omega, mu, etta = 0, sigma = 0):
         '''Return Green function in real frequencies'''
-        try:
-            tmp = self.E[0]
-        except:
+        if not hasattr(self, "E"):
             self.dispersion()
-        
+
         self.gw = np.zeros(omega.shape[0], dtype=np.complex128)
         if sigma == 0: sigma = np.zeros(omega.shape[0], dtype=np.complex128)
         for w in range(omega.shape[0]):
@@ -126,10 +117,11 @@ class Tight_binding():
         self.omega = w 
         self.dos = -np.imag(self.gf_w(w, mu, etta, sigma)) / np.pi
         
-    def HT(self, g, wn, mu = 0, sigma = 0):
-        
+    def HT(self, g, wn, mu=0, sigma=None):
         assert hasattr(self, 'dos'), 'You should create dos object first. Call DOS(...) method'
-        if isinstance(sigma, int): sigma = np.zeros(g.shape[0], dtype=np.complex128)
+
+        if sigma is None:
+            sigma = np.zeros(g.shape[0], dtype=np.complex128)
         dw = (self.omega[-1] - self.omega[0]) / self.omega.shape[0]
         for i in range(g.shape[0]):
             g[i] = np.sum(self.dos * dw / (1j * wn[i] - self.omega - sigma[i] + mu))
@@ -147,13 +139,6 @@ class Bethe_lattice():
         self.HT(self.g_wn, wn, mu, sigma)
         return self.g_wn
         
-    
-#     def gf_w(self, omega, mu, etta = 0, sigma = 0):
-#         '''Return Green function in real frequencies'''
-#         zeta = 1j * etta + omega + mu - sigma
-#         self.gw = (zeta - np.sign(np.imag(zeta)) * np.sqrt(zeta ** 2 - 4 * self.t ** 2, dtype=np.complex128)) / (2 * self.t ** 2)
-#         return self.gw
-    
     def DOS(self, w):
         self.omega = w
         self.dos = np.sqrt(4 * self.t ** 2 - w ** 2) / np.pi / 2 / self.t ** 2

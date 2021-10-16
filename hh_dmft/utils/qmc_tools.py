@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import, unicode_literals
 import numpy as np
 import numba
 
@@ -47,15 +45,7 @@ def coef(U, y, beta, k, tau, w0, b, pu):
     if b:
         return coef_ph(y, beta, k, tau, w0, pu) 
     else:
-        return coef_hub(U, beta, k, w0, pu)        
-
-@numba.njit()
-def det(M):
-    return np.linalg.det(M)
-
-@numba.njit()
-def inv(M):
-    return np.linalg.inv(M)
+        return coef_hub(U, beta, k, w0, pu)
 
 @numba.njit()
 def gf(tay, beta, g_tau):
@@ -74,8 +64,8 @@ def comp_gf(mtx, times, t, t1, beta, g_tau):
     
 @numba.njit()   
 def comp_gf_iw(num, mg, times, freq, g_iw):
-    e = np.exp(-1j*freq[num] * times).astype(np.complex64)
-    return g_iw[num] * np.complex64(1.0 - e.real.astype(np.float32).dot(mg.astype(np.float32)) - 1j*(e.imag.astype(np.float32).dot(mg.astype(np.float32))))
+    e = np.exp(-1j*freq[num] * times).astype(np.complex128)
+    return g_iw[num] * np.complex128(1.0 - e.real.dot(mg) - 1j*(e.imag.dot(mg)))
 
 @numba.njit()
 def tau_n(tau, dt, beta):
@@ -100,10 +90,10 @@ def rewrite(mtx, edge, upto, arr_h, arr_v):
 
 @numba.njit()
 def correlator_computations(GFu, GFd, k, beta, minv0, minv1, g_tau, times0, times1, freq, sign_m, g_iw,num_iw):
-    gft0 = np.array([gf(s, beta, g_tau) for s in times0], dtype=np.float32)
+    gft0 = np.array([gf(s, beta, g_tau) for s in times0], dtype=np.float64)
     mg0 = minv0.dot(gft0)
-    gft1 = np.array([gf(s, beta, g_tau) for s in times1], dtype=np.float32)
+    gft1 = np.array([gf(s, beta, g_tau) for s in times1], dtype=np.float64)
     mg1 = minv1.dot(gft1)
     for num in numba.prange(num_iw):
-        GFu[k,num] = np.float32(sign_m) * comp_gf_iw(num, mg0, times0, freq, g_iw)
-        GFd[k,num] = np.float32(sign_m) * comp_gf_iw(num, mg1, times1, freq, g_iw)
+        GFu[k,num] = sign_m * comp_gf_iw(num, mg0, times0, freq, g_iw)
+        GFd[k,num] = sign_m * comp_gf_iw(num, mg1, times1, freq, g_iw)

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import, unicode_literals
-
 import numba
 import torch as th
 import numpy as np
@@ -25,7 +22,7 @@ def diagonalize_hamiltonian(H, blocks):
 
 def get_frequency_greens_function_component(op2eb, iwn, op1, op2, beta, E, U, Z, xi=-1.0):
 
-    r"""
+    """
     Returns:
     G^{(2)}(i\omega_n) = -1/Z < O_1(i\omega_n) O_2(-i\omega_n) >
     """

@@ -1,13 +1,10 @@
-#-*- coding: utf-8 -*-
-from __future__ import print_function, division, absolute_import, unicode_literals
-
-from . import basis as b
+import basis as b
 from scipy.sparse import coo_matrix, eye
 import numpy as np
 import copy
 from math import factorial as fact
 
-class A():
+class AModel:
 
     def __init__(self, **params):
         self.md = self.mb = 1
@@ -217,6 +214,7 @@ class A():
             blocks[str(sum(n))] = inner
         
         return blocks
+
     def _hamiltonian_changed_parts(self):
         '''Расчитывает гамильтонову матрицу'''
          #Затравочная энергия фермионной ванны
